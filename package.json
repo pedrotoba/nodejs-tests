@@ -1,0 +1,24 @@
+{
+  "name": "nodejs-tests",
+  "version": "1.0.0",
+  "description": "Pruebas test",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.15.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedrotoba/nodejs-tests.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedrotoba/nodejs-tests/issues"
+  },
+  "homepage": "https://github.com/pedrotoba/nodejs-tests#readme"
+}
