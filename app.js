@@ -1,10 +1,15 @@
+
 var express = require('express');
+var http = require('http');
 var app = express();
-//var exec = require('exec');
-var exec = require('child_process').exec;
- 
+var server = http.createServer(app);
+var socket = require('socket.io')(server);
+
 var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+var esp = require('./esp_functions');
+
 
 var exito = {function:"exito"};
 var error = {function:"error"};
@@ -18,7 +23,6 @@ app.get('/index.html', function (req, res) {
 app.post('/process_data', urlencodedParser, function(req, res) {
 	response = {
       com_port:req.body.COM,
-      file_name:req.body.FILE_NAME
    	};
 	console.log(response);
 	res.type('text/plain');
@@ -26,13 +30,10 @@ app.post('/process_data', urlencodedParser, function(req, res) {
 	console.log("Petición recibida");
 });
 
-var server = app.listen(8081, function () {
-   var host = server.address().address
-   var port = server.address().port
-   
-   console.log("Server start at port 8081", host, port)
-})
+var servidor = server.listen(8081, function(){
+	console.log("Server start port 8081");
+});
 
-/*exec('ls -la', function(error, stdout, stderr) {
-    console.log(stdout);
-});*/
+esp.download_firmware();
+
+
